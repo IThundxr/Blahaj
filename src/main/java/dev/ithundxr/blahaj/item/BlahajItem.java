@@ -21,14 +21,14 @@ public class BlahajItem extends Item {
 
     public BlahajItem(Properties properties, String subtitle) {
         super(properties);
-        this.subtitle = subtitle == null? null: Component.translatable(subtitle).withStyle(ChatFormatting.GRAY);
+        this.subtitle = subtitle == null ? null : Component.translatable(subtitle).withStyle(ChatFormatting.GRAY);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
-        if(this.subtitle != null)
+        if (this.subtitle != null)
             tooltipComponents.add(this.subtitle);
-        if(stack.hasTag()) {
+        if (stack.hasTag()) {
             CompoundTag nbt = stack.getTag();
             if (nbt == null) return;
             String owner = nbt.getString(OWNER_KEY);
