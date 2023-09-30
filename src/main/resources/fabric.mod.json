@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "blahaj",
+  "version": "${version}",
+  "name": "Blahaj",
+  "description": "",
+  "authors": [
+    "IThundxr"
+  ],
+  "contact": {
+    "website": "https://ithundxr.dev",
+    "repo": "https://github.com/ithundxr/Blahaj"
+  },
+  "license": "MIT",
+  "icon": "assets/blahaj/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "dev.ithundxr.blahaj.Blahaj"
+    ]
+  },
+  "mixins": [
+    "blahaj.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "${minecraft_version}",
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*"
+  }
+}
