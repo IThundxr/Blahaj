@@ -1,27 +1,46 @@
 plugins {
-    id 'fabric-loom' version '1.2-SNAPSHOT'
+    id 'fabric-loom' version '1.4.+'
     id 'maven-publish'
 }
 
 version = mod_version
 group = maven_group
 
+repositories {
+    maven { url = "https://maven.quiltmc.org/repository/release" } // QM
+    maven { url = "https://maven.parchmentmc.org" } // Parchment
+    maven { url = "https://maven.fabricmc.net/" } // FAPI, Loader
+    maven { url = "https://mvn.devos.one/snapshots" } // Porting Lib
+    maven { url = "https://jitpack.io/" } // for Porting Lib: Mixin Extras, Fabric ASM
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.officialMojangMappings()
+
+    // layered mappings - Mojmap names, parchment and QM docs and parameters
+    mappings(loom.layered {
+        it.mappings("org.quiltmc:quilt-mappings:${minecraft_version}+build.${qm_version}:intermediary-v2")
+        it.parchment("org.parchmentmc.data:parchment-${minecraft_version}:${parchment_version}@zip")
+        it.officialMojangMappings { nameSyntheticMembers = false }
+    })
+
     // Fabric Loader
     modImplementation "net.fabricmc:fabric-loader:${loader_version}"
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+
+    for (String module in porting_lib_modules.split(",")) {
+        modImplementation(include("io.github.fabricators_of_create.Porting-Lib:${module}:${porting_lib_version}"))
+    }
 }
 
 processResources {
     Map<String, String> properties = Map.of(
             "version", version as String,
-            "minecraft_version", minecraft_version,
-            "loader_version", loader_version,
-            "fabric-api_version", fabric_version
+            "fabric_loader_version", loader_version,
+            "fabric_api_version", fabric_version,
+            "minecraft_version", minecraft_version
     )
     properties.forEach((k, v) -> inputs.property(k, v))
 

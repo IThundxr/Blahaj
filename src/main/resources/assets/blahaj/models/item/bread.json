@@ -1,7 +1,7 @@
 {
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "blahaj:item/bred",
+		"0": "blahaj:item/bread",
 		"particle": "#0"
 	},
 	"elements": [

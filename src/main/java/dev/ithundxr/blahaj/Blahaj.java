@@ -1,5 +1,7 @@
 package dev.ithundxr.blahaj;
 
+import dev.ithundxr.blahaj.registry.BlahajCreativeModeTab;
+import dev.ithundxr.blahaj.registry.BlahajItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +13,10 @@ public class Blahaj implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ModSetup.register();
+        Blahaj.LOGGER.info("Started Registration");
+        BlahajCreativeModeTab.register();
+        BlahajItems.register();
+        Blahaj.LOGGER.info("Finished Registration");
     }
 
     public static ResourceLocation asResource(String name) {
