@@ -1,6 +1,10 @@
+import dev.ithundxr.silk.ChangelogText
+
 plugins {
-    id 'fabric-loom' version '1.4.+'
     id 'maven-publish'
+    id 'fabric-loom' version '1.4.+'
+    id "me.modmuss50.mod-publish-plugin" version "0.3.4" apply false // https://github.com/modmuss50/mod-publish-plugin
+    id "dev.ithundxr.silk" version "0.11.15" // https://github.com/IThundxr/silk
 }
 
 version = mod_version
@@ -10,8 +14,6 @@ repositories {
     maven { url = "https://maven.quiltmc.org/repository/release" } // QM
     maven { url = "https://maven.parchmentmc.org" } // Parchment
     maven { url = "https://maven.fabricmc.net/" } // FAPI, Loader
-    maven { url = "https://mvn.devos.one/snapshots" } // Porting Lib
-    maven { url = "https://jitpack.io/" } // for Porting Lib: Mixin Extras, Fabric ASM
 }
 
 dependencies {
@@ -29,9 +31,35 @@ dependencies {
 
     // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+}
 
-    for (String module in porting_lib_modules.split(",")) {
-        modImplementation(include("io.github.fabricators_of_create.Porting-Lib:${module}:${porting_lib_version}"))
+publishMods {
+    file = remapJar.archiveFile
+    version = "$mod_version-fabric-mc$minecraft_version"
+    changelog = ChangelogText.getChangelogText(project)
+    type = STABLE
+    displayName = "Blåhaj Beyond  $mod_version for mc$minecraft_version"
+    modLoaders.add("fabric")
+    modLoaders.add("quilt")
+
+    curseforge {
+        projectId = curseforge_id
+        accessToken = System.getenv("CURSEFORGE_TOKEN")
+        minecraftVersions.add(minecraft_version)
+
+        requires {
+            slug = "fabric-api"
+        }
+    }
+
+    modrinth {
+        projectId = modrinth_id
+        accessToken = System.getenv("MODRINTH_TOKEN")
+        minecraftVersions.add(minecraft_version)
+
+        requires {
+            slug = "fabric-api"
+        }
     }
 }
 
