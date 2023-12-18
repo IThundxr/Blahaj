@@ -3,7 +3,7 @@ import dev.ithundxr.silk.ChangelogText
 plugins {
     id 'maven-publish'
     id 'fabric-loom' version '1.4.+'
-    id "me.modmuss50.mod-publish-plugin" version "0.3.4" apply false // https://github.com/modmuss50/mod-publish-plugin
+    id "me.modmuss50.mod-publish-plugin" version "0.3.4" // https://github.com/modmuss50/mod-publish-plugin
     id "dev.ithundxr.silk" version "0.11.15" // https://github.com/IThundxr/silk
 }
 
@@ -96,6 +96,6 @@ java {
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${archivesBaseName}"}
+        rename { "${it}_${archives_base_name}"}
     }
 }
