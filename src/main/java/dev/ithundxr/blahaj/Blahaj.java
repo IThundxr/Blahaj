@@ -13,10 +13,10 @@ public class Blahaj implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        Blahaj.LOGGER.info("Started Registration");
+        Blahaj.LOGGER.info("[Blahaj Beyond] Started Registration");
         BlahajCreativeModeTab.register();
         BlahajItems.register();
-        Blahaj.LOGGER.info("Finished Registration");
+        Blahaj.LOGGER.info("[Blahaj Beyond] Finished Registration");
     }
 
     public static ResourceLocation asResource(String name) {
