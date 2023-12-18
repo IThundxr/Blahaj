@@ -9,7 +9,9 @@
     "MixinAnvilMenu"
   ],
   "client": [
+    "AccessorModelManager",
     "MixinHumanoidModel",
+    "MixinModelBakery",
     "MixinModelManager",
     "MixinPlayerRenderer"
   ],

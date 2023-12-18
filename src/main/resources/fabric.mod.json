@@ -13,8 +13,7 @@
   "icon": "assets/blahaj/icon.png",
   "environment": "*",
   "entrypoints": {
-    "main": ["dev.ithundxr.blahaj.Blahaj"],
-    "client": ["dev.ithundxr.blahaj.BlahajClient"]
+    "main": ["dev.ithundxr.blahaj.Blahaj"]
   },
   "mixins": ["blahaj.mixins.json"],
   "depends": {
