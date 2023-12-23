@@ -20,7 +20,7 @@ This mod is a Continuation & Fabric port of the original [Blåhaj mod](https://g
 
 ### Skins
 Skins let you use different types of "skins" as the texture for your blahaj, below are all the valid names you can use to get these skins, rename your blahaj and done!
-<details open>
+<details close>
 <summary>Skin Names</summary>
 Optionally these can be suffixed with "_shark" or " shark" and they will still work
 
